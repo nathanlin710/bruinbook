@@ -1,27 +1,42 @@
 function Post() {
   //test
     return (
-        <div class="row">
-          <div class="col">
-            <form>
-              <legend>New Post</legend>
-              <div>
-                <label>Title</label>
-                <input type="text" name="title" placeholder="Title"/>
-              </div>
-              <div>
-                <label>URL</label>
-                <input type="url" name="url" placeholder="https://www.google.com"/>
-              </div>
-              <div>
-                <label>Text</label>
-                <input type="text" name="text" placeholder="Text"/>
-              </div>
-              <div>
-                <button type="submit">Create Post</button>
-              </div>
-            </form>
+        <form>
+          <legend>New Post</legend>
+          <div>
+            <label>Image</label>
+            <input type="image" name="image"/>
+          </div>
+          <div>
+            <label>Caption</label>
+            <input type="text" name="text" placeholder="Text"/>
+          </div>
+          <div>
+            <button type="submit">Create Post</button>
+          </div>
+        </form>
+    );
+}
+
+function displayPost(props) {
+  return (
+      <article className="Post">
+      <header>
+        <div className="Post-user">
+          <div className="Post-user-avatar">
+            <img src={props.avatar} />
+          </div>
+          <div className="Post-user-name">
+            <span>{props.name}</span>
           </div>
         </div>
-    )
+      </header>
+      <div className="Post-image">
+          <img src = {props.image} />
+      </div>
+      <div className="Post-caption">
+          {props.caption}
+      </div>
+    </article>
+  );
 }

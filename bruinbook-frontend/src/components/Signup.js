@@ -1,21 +1,47 @@
+import React, { useState } from 'react'
+
 function Signup() {
-    return (
-        <form>
-            <label htmlFor="email">Username</label> <br />
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [submitted, setSubmitted] = useState(false)
+
+    const submit = e => {
+        e.preventDefault()
+        console.log(email + ',' + password)
+        setSubmitted(true)
+    }
+
+    const message = <p>Account has been created!</p>
+    const form = 
+        <form onSubmit={submit}>
+            <label htmlFor="username">Username</label> 
+            <br />
             <input
-                type="email"
-                name="email"
+                name="username"
+                value= {email}
+                onChange= {text => setEmail(text.target.value)}
             />
             <br />
-            <label htmlFor="comment">Email</label>
-            <textarea
-                name="email"
+            <br />
+            <label htmlFor="password">Password</label>
+            <br />
+            <input
+                name="password"
+                type="password"
+                value = {password}
+                onChange = {text => setPassword(text.target.value)}
             />
             <br />
-            
-            <button type="submit">Send it!</button>
+            <br />
+            <button type="submit">Submit!</button>
         </form>
+
+    return (
+        <div>
+            {submitted ? message : form}
+        </div>
     )
+    
 }
 
 export default Signup

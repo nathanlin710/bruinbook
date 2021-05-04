@@ -2,8 +2,14 @@ const express = require('express')
 const router = express.Router()
 const Post = require('../models/post');
 
+router.get('/', (req, res) => {
+    console.log(`api /`)
+    res.send('Hello World!')
+});
+
 router.get('/posts', (req, res, next) => {
     // gets post data, exposes just id and content
+    console.log(`posts`)    
     Post.find({}, 'content')
         .then(data => res.json(data))
         .catch(next)

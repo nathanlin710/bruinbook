@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const postRoutes = require('../routes/postRoutes');
-const accountRoutes = require('../routes/accountRoutes');
+const routes = require('../routes');
 const path = require('path');
 require('dotenv').config();
 
@@ -26,8 +25,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.use('/posts', postRoutes);
-app.use('/accounts', accountRoutes)
+app.use('/', routes);
 
 app.use((err, req, res, next) => {
   console.log(`logging error`);

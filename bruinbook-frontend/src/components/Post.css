@@ -1,0 +1,40 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300ita‌​lic,400italic,500,500italic,700,700italic,900italic,900);
+
+.username{
+    font-size:55px;
+    font-family:'Roboto', sans-serif;
+    font-weight:bold;
+    color:rgb(233, 200, 50);;
+    padding: 10px 10px 10px 15px;
+    font-style:italic
+}
+
+.caption{
+    font-size:20px;
+    font-family:'Roboto', sans-serif;
+    font-weight:30;
+    color:white;
+    padding: 10px 10px 0px 10px;
+}
+
+.Post{
+    margin:auto;
+    width:55%;
+    border-color:rgb(248, 225, 108) ;
+    border-style: solid;
+    border-width:10px;
+    border-radius:20px;
+    margin-bottom: 10px;
+    background-color:rgb(3, 37, 78);;
+}
+
+.image-box{
+   
+}
+
+.image{
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+}
+

@@ -2,20 +2,20 @@ const Account = require('../../models/account');
 
 const _get = (req, res, next) => {
     console.log("Getting single Account");
-    Account.findById(req.params.id)
+    Account.findById(req.params.accountId)
         .then(data => res.json(data))
         .catch(next);
 };
 
 const _patch = (req, res, next) => {
     console.log("Updating single Account");
-    Account.findOneAndUpdate({"_id": req.params.id}, req.body)
+    Account.findByIdandUpdate(req.params.accountId, req.body)
         .then(data => res.json(data))
         .catch(next);
 };
 
 const _delete = (req, res, next) => {
-    Account.findOneAndDelete({"_id": req.params.id})
+    Account.findByIdAndDelete(req.params.accountId)
         .then(data => res.json(data))
         .catch(next);
 };

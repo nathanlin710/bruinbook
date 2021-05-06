@@ -1,13 +1,5 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const routes = require('../routes');
-const path = require('path');
 require('dotenv').config();
-
-const app = express();
-
-const port = process.env.PORT;
+const mongoose = require('mongoose');
 
 // connect to database
 mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true , useFindAndModify: false})
@@ -15,6 +7,16 @@ mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: tr
   .catch(err => console.log(err));
 
 mongoose.Promise = global.Promise;
+
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const routes = require('../routes');
+const path = require('path');
+
+const app = express();
+
+const port = process.env.PORT;
 
 app.use((req, res, next) => {
   console.log(`headers`);

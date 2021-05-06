@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT;
 
 // connect to database
-mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true , useFindAndModify: false})
   .then(() => console.log(`Database connected successfully`))
   .catch(err => console.log(err));
 
@@ -24,18 +24,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res, next) => {
-  console.log(`get \'/\'`);
-  res.send("Server root");
-  next();
-});
+app.use(express.json());
 
-app.use(bodyParser.json());
-
-app.use('/postRoutes', postRoutes);
-app.use('/accountRoutes', accountRoutes)
+app.use('/posts', postRoutes);
+app.use('/accounts', accountRoutes)
 
 app.use((err, req, res, next) => {
+  console.log(`logging error`);
   console.log(err);
   next();
 });

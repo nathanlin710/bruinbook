@@ -3,11 +3,16 @@ const Schema = mongoose.Schema;
 
 //create schema for post
 const PostSchema = new Schema({
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'Account',
+    required: 'post author is required'
+  },
   content: {
     type: String,
-    required: [true, 'post content is required']
+    required: 'post content is required'
   }
-})
+}, {timestamps: true})
 
 //create model for post
 const Post = mongoose.model('post', PostSchema);

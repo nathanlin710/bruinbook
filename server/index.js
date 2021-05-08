@@ -9,7 +9,6 @@ mongoose.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: tr
 mongoose.Promise = global.Promise;
 
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const routes = require('../routes');
 const path = require('path');

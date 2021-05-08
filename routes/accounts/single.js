@@ -9,7 +9,7 @@ const _get = (req, res, next) => {
 
 const _patch = (req, res, next) => {
     console.log("Updating single Account");
-    Account.findByIdandUpdate(req.params.accountId, req.body)
+    Account.findByIdAndUpdate(req.params.accountId, req.body, { new: true } )
         .then(data => res.json(data))
         .catch(next);
 };

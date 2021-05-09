@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import styles from './CreatePost.css'
+import './CreatePost.css'
+document.body.style.zoom="100%"
+
 
 function CreatePost() {
     const [title, setTitle] = useState('')
@@ -11,13 +13,15 @@ function CreatePost() {
         a.preventDefault()
         setSubmitted(true)
     }
-    const message = <p>Post Created Successfully!</p>
+    const message = <p class="message">Post Created Successfully!</p>
     const form = 
-        <form onSubmit={create}>
-            <h3>Create Post</h3>
+    <div class="background">
+        <form onSubmit={create} class="formarea">
+            <h3 class="header">Create Post</h3>
             <label htmlFor="title">Title</label> 
             <br />
             <input
+                class="input"
                 name="title"
                 type="text"
                 value= {title}
@@ -29,6 +33,7 @@ function CreatePost() {
             <label htmlFor="picture">Image</label>
             <br />
             <input
+                class="input"
                 name="picture"
                 type="url"
                 value = {picture}
@@ -40,17 +45,18 @@ function CreatePost() {
             <label htmlFor="caption">Caption</label>
             <br />
             <textarea
+                class="input"
                 name="caption"
                 rows="5"
-                cols="51"
                 value = {caption}
                 placeholder="Write a caption..." required
                 onChange = {text => setCaption(text.target.value)}
             />
             <br />
             <br />
-            <button type="submit">Share</button>
+            <button type="submit" class="share">Share</button>
         </form>
+    </div>
 
     return (
         <div>

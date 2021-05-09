@@ -1,5 +1,5 @@
 import './App.css';
-import CreatePost from './components/createPost';
+import CreatePost from './components/CreatePost';
 import Page from './components/Post'
 import Signup from './components/Signup'
 function App() {

@@ -18,10 +18,7 @@
   },
   "homepage": "https://github.com/dylanzhangg/bruinbook-server#readme",
   "dependencies": {
-<<<<<<< HEAD
     "dotenv": "^8.2.0",
-=======
->>>>>>> main
     "express": "^4.17.1",
     "mongoose": "^5.12.7"
   }

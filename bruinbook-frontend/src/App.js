@@ -1,14 +1,18 @@
 import './App.css';
-import CreatePost from './components/CreatePost';
-import Page from './components/Post'
-import Signup from './components/Signup'
+import Home from './components/Home'
+import Login from './components/Login'
+import SignUp from './components/Signup'
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+
 function App() {
   return (
-    <div>
-    <Signup />
-    <CreatePost />
-    <Page />
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' component={Home}></Route>
+        <Route exact path='/login' component={Login}></Route>
+        <Route exact path='/signup' component={SignUp}></Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 

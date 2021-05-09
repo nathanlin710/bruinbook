@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Signup() {
+function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [submitted, setSubmitted] = useState(false)
@@ -11,7 +11,7 @@ function Signup() {
         setSubmitted(true)
     }
 
-    const message = <p>Account has been created!</p>
+    const message = <p>Sent Login</p>
     const form = 
         <form onSubmit={submit}>
             <label htmlFor="username">Username</label> 
@@ -33,7 +33,7 @@ function Signup() {
             />
             <br />
             <br />
-            <button type="submit">Submit</button>
+            <button type="submit">Login</button>
         </form>
 
     return (
@@ -44,4 +44,4 @@ function Signup() {
     
 }
 
-export default Signup
+export default Login

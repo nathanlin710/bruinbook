@@ -1,0 +1,54 @@
+html {
+    background-color:#2774AE;
+}
+h3 {
+    color: black;
+    text-align: center;
+    font-size: 18px;
+    font-family: inherit;
+}
+div {
+    left: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Gill Sans';
+    letter-spacing: 0.5px;
+}
+form {
+    background-color: white;
+    left: 20px;
+    height: 100vh;
+    font-size: 10px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+input {
+    font-size: 8px;
+    width: 96.5%;
+    letter-spacing: 0.5px;
+}
+textarea {
+    font-size: 10px;
+    width: 97.2%;
+    letter-spacing: 0.1px;
+}
+button {
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    width: 20%;
+    position: absolute;
+    left: 40%;
+    /*top: 91%;*/
+
+}
+button:hover {
+    transform: scale(1.1);
+}
+p {
+    text-align: center;
+    font-size: 25px;
+    color:white;
+}

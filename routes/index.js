@@ -4,7 +4,7 @@ const router = express.Router();
 const accounts = require('./accounts');
 
 router.get('/', (req, res) =>{
-    res.send("Connected");
+    res.json("Connected");
 });
 
 router.use('/accounts', accounts);

@@ -9,6 +9,10 @@ const AccountSchema = new Schema({
         type: String,
         required: 'name is required'
     },
+    email: {
+        type: String,
+        required: 'email is required'
+    },
     password: {
         type: String,
         required: 'password is required'

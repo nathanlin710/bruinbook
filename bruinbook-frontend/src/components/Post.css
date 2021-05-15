@@ -18,6 +18,8 @@
 }
 
 .Post{
+    display: flex;
+    flex-direction: column;
     margin:auto;
     width:55%;
     border-color:rgb(248, 225, 108) ;
@@ -25,7 +27,7 @@
     border-width:10px;
     border-radius:20px;
     margin-bottom: 10px;
-    background-color:rgb(3, 37, 78);;
+    background-color:rgb(3, 37, 78);
 }
 
 .image-box{

@@ -1,0 +1,18 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+  }
+
+  .button {
+      background: white;
+      border-radius: 10%;
+      height: 60px;
+      border:0cm
+  }
+
+  .bar-container{
+      background: white;
+      height: 65px;
+  }

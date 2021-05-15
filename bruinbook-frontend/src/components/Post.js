@@ -1,5 +1,6 @@
 import React from "react";
 import './Post.css';
+import ReactionBar from './Reactions.js'
 
 // renders a Post component
 function Post(props) {
@@ -17,6 +18,12 @@ function Post(props) {
       </div>
       <div className="caption-box">
         <p className = "caption">{props.caption}</p>
+      </div>
+      <div>
+        <ReactionBar/>
+      </div>
+      <div>
+        <span>Comment Section Placeholder blah lbha blah blah blah blah blah blah blah blah blah blah blah</span>
       </div>
     </article>
   );

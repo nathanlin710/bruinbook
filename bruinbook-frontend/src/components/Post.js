@@ -1,6 +1,7 @@
 import React from "react";
 import './Post.css';
 import ReactionBar from './ReactionBar.js';
+import CommentSection from './CommentSection.js'
 
 // renders a Post component
 function Post(props) {
@@ -23,7 +24,7 @@ function Post(props) {
         <ReactionBar/>
       </div>
       <div>
-        <span>Comment Section Placeholder blah lbha blah blah blah blah blah blah blah blah blah blah blah</span>
+        <CommentSection array={props.comments}/>
       </div>
     </article>
   );

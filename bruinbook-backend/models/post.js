@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//create schema for post
 const PostSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
@@ -11,10 +10,11 @@ const PostSchema = new Schema({
   content: {
     type: String,
     required: 'post content is required'
-  }
-}, {timestamps: true})
+  },
+  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+  
+}, {timestamps: true});
 
-//create model for post
 const Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;  

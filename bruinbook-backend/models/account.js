@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
-
-//create schema for account
 const AccountSchema = new Schema({
     name: {
         type: String,
@@ -17,10 +14,10 @@ const AccountSchema = new Schema({
         type: String,
         required: 'password is required'
     },
+    following: [{type: Schema.Types.ObjectId, ref: 'Account'}],
     posts: [{type: Schema.Types.ObjectId, ref: 'Post'}]
 });
 
-//create model for account
 const Account = mongoose.model('Account', AccountSchema);
 
 module.exports = Account;

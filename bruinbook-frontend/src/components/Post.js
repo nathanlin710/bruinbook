@@ -1,6 +1,6 @@
 import React from "react";
 import './Post.css';
-import ReactionBar from './Reactions.js'
+import ReactionBar from './ReactionBar.js';
 
 // renders a Post component
 function Post(props) {

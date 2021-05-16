@@ -6,9 +6,9 @@ const AccountSchema = new Schema({
         type: String,
         required: 'name is required'
     },
-    email: {
+    username: {
         type: String,
-        required: 'email is required'
+        required: 'username is required'
     },
     password: {
         type: String,

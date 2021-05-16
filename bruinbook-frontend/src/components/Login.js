@@ -1,4 +1,7 @@
+
 import React, { useState } from 'react'
+import axios from 'axios';
+import NavBar from './NavBar'
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -6,8 +9,11 @@ function Login() {
     const [submitted, setSubmitted] = useState(false)
 
     const submit = e => {
+        axios.post('http://localhost:3000/login/', {
+            name: email,
+            password: password
+        })
         e.preventDefault()
-        console.log(email + ',' + password)
         setSubmitted(true)
     }
 
@@ -38,6 +44,7 @@ function Login() {
 
     return (
         <div>
+            <NavBar />
             {submitted ? message : form}
         </div>
     )

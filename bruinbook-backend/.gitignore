@@ -1,0 +1,9 @@
+#Node
+node_modules
+.env
+request.rest
+
+#Emacs
+*~
+\#*\#
+

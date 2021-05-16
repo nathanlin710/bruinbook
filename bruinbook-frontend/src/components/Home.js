@@ -1,8 +1,11 @@
 import CreatePost from './CreatePost';
 import Post from './Post'
+import NavBar from './NavBar'
+
 function Home () {
     return (
         <div>
+            <NavBar />
             <CreatePost />
             <Post 
                 username = "Hello"

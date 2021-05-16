@@ -1,17 +1,6 @@
 import React from "react";
-import './Reactions.css';
-
-function Button(props){
-    let fileName = props.icon + ".png";
-    return(
-        <button className="button" onClick={() => props.onClick()}>
-            <img src = {fileName} alt = "" height='30' width='30' />
-            <div>
-                {props.number}
-            </div>
-        </button>
-    )
-}
+import './ReactionBar.css';
+import Reaction from "./Reaction.js";
 
 class ReactionBar extends React.Component {
     constructor(props){
@@ -46,8 +35,8 @@ class ReactionBar extends React.Component {
         });
     }
 
-    renderButton(i){
-        return(<Button
+    renderReaction(i){
+        return(<Reaction
             icon={this.state.icons[i]}
             number={this.state.buttonTotal[i]}
             onClick={() => this.handleClick(i)}
@@ -59,19 +48,19 @@ class ReactionBar extends React.Component {
             <div class ="bar-container">
             <div class="flex-container">
                 <div>
-                    {this.renderButton(0)}
+                    {this.renderReaction(0)}
                 </div>
                 <div>
-                    {this.renderButton(1)}
+                    {this.renderReaction(1)}
                 </div>
                 <div>
-                    {this.renderButton(2)}
+                    {this.renderReaction(2)}
                 </div>
                 <div>
-                    {this.renderButton(3)}
+                    {this.renderReaction(3)}
                 </div>
                 <div>
-                    {this.renderButton(4)}
+                    {this.renderReaction(4)}
                 </div>
             </div>
             </div>

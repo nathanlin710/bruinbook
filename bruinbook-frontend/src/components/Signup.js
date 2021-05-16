@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import NavBar from './NavBar'
+import './Signup.css'
 
 function Signup() {
     const [email, setEmail] = useState('')
@@ -19,7 +20,7 @@ function Signup() {
 
     const message = <p>Account has been created!</p>
     const form = 
-        <form onSubmit={submit}>
+        <form onSubmit={submit} className='signup-box'>
             <label htmlFor="username">Username</label> 
             <br />
             <input
@@ -43,7 +44,7 @@ function Signup() {
         </form>
 
     return (
-        <div>
+        <div className='signup-background'>
             <NavBar />
             {submitted ? message : form}
         </div>

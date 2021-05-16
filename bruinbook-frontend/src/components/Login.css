@@ -1,9 +1,9 @@
-.signup-background{
+.login-background{
     background-color: #2774AE;
     width: 100%;
     height: 100vh;
 }
-.signup-box{
+.login-box{
     background-color: white;
     padding: 30px;
     margin-left: auto;

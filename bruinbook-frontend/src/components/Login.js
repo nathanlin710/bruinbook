@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import NavBar from './NavBar'
+import './Login.css'
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -19,7 +20,7 @@ function Login() {
 
     const message = <p>Sent Login</p>
     const form = 
-        <form onSubmit={submit}>
+        <form onSubmit={submit} className='login-box'>
             <label htmlFor="username">Username</label> 
             <br />
             <input
@@ -43,9 +44,11 @@ function Login() {
         </form>
 
     return (
-        <div>
+        <div className="login-background">
             <NavBar />
-            {submitted ? message : form}
+            <div>
+                {submitted ? message : form}
+            </div>   
         </div>
     )
     

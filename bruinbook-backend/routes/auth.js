@@ -7,24 +7,13 @@ router.post('/register', controller.register)
 
 router.post('/login',
     passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: './login',
         failureFlash: true
-    })
-);
+    }),
+    controller.login
+)
 
-router.get('/login', (req, res) => {
-    try {
-        console.log(req.user.email)
-    } catch {
-        console.log("No one is logged in")
-    }
-})
+router.get('/logout', controller.logout)
 
-router.get('/logout', (req, res) => {
-    req.logOut()
-    console.log("logged out")
-    res.redirect('./login')
-})
+router.get('/logged_in', controller.logged_in)
 
 module.exports = router

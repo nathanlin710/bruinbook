@@ -2,6 +2,7 @@ import React from "react";
 import './Post.css';
 import ReactionBar from './ReactionBar.js';
 import CommentSection from './CommentSection.js'
+import CreateComment from "./Comment.js";
 
 // renders a Post component
 function Post(props) {
@@ -22,6 +23,9 @@ function Post(props) {
       </div>
       <div>
         <ReactionBar/>
+      </div>
+      <div>
+        <CreateComment/>
       </div>
       <div>
         <CommentSection array={props.comments}/>

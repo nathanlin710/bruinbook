@@ -5,10 +5,6 @@ const Schema = mongoose.Schema;
 
 //create schema for account
 const AccountSchema = new Schema({
-    name: {
-        type: String,
-        required: 'name is required'
-    },
     username: {
         type: String,
         required: 'username is required'

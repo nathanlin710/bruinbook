@@ -10,7 +10,7 @@ function initialize(passport) {
                 if (!user) return done(null, false, { message: 'No user with that username'})
                 try {
                     if (await bcrypt.compare(password, user.password)) {
-                        console.log(user.name)
+                        console.log(user.username)
                         return done(null, user)
                     } else {
                         return done(null, false, {message: 'Password does not match'})

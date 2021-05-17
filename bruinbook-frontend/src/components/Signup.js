@@ -9,13 +9,17 @@ function Signup() {
     const [submitted, setSubmitted] = useState(false)
 
     const submit = e => {
+        e.preventDefault()
         axios.post('http://localhost:3000/auth/register/', {
             name: email,
             username: email,
             password: password
         })
-        e.preventDefault()
-        console.log(email + ',' + password)
+        .then((response) =>{
+            console.log('done');
+        }, (error) => {
+            console.log('failed');
+        });
         setSubmitted(true)
     }
 

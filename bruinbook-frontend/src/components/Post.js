@@ -3,9 +3,11 @@ import './Post.css';
 import ReactionBar from './ReactionBar.js';
 import CommentSection from './CommentSection.js'
 import CreateComment from "./Comment.js";
+import {useWindowDimensions} from 'react-native';
 
 // renders a Post component
 function Post(props) {
+  const window = useWindowDimensions();
   return (
       <article className="Post">
       <header>
@@ -16,7 +18,7 @@ function Post(props) {
         </div>
       </header>
       <div className="image-box">
-          <img className = "image" src = {props.image} alt="" height='400' />
+          <img className = "image" src = {props.image} alt="" width={0.50*window.width} />
       </div>
       <div className="caption-box">
         <p className = "caption">{props.caption}</p>

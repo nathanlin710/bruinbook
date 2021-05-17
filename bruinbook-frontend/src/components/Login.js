@@ -10,8 +10,9 @@ function Login() {
     const [submitted, setSubmitted] = useState(false)
 
     const submit = e => {
-        axios.post('http://localhost:3000/login/', {
+        axios.post('http://localhost:3000/auth/login', {
             name: email,
+            username: email,
             password: password
         })
         e.preventDefault()

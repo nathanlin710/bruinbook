@@ -9,8 +9,9 @@ function Signup() {
     const [submitted, setSubmitted] = useState(false)
 
     const submit = e => {
-        axios.post('http://localhost:3000/register/', {
+        axios.post('http://localhost:3000/auth/register/', {
             name: email,
+            username: email,
             password: password
         })
         e.preventDefault()

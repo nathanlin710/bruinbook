@@ -1,8 +1,8 @@
-
 import React, { useState } from 'react'
 import axios from 'axios';
 import NavBar from './NavBar'
 import './Login.css'
+import './global.js'
 
 function Login() {
     const [username, setUsername] = useState('')
@@ -10,10 +10,15 @@ function Login() {
     const [submitted, setSubmitted] = useState(false)
 
     const submit = e => {
-        axios.post('http://localhost:3000/login/', {
+        axios.post('http://localhost:3000/auth/login/', {
             name: username,
+            username: username,
             password: password
-        })
+        }).then((response) => {
+            global._id = response.data["_id"];
+          }, (error) => {
+            console.log(error);
+          });
         e.preventDefault()
         setSubmitted(true)
     }

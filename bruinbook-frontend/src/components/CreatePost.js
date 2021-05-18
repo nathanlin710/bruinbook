@@ -1,51 +1,47 @@
+import axios from 'axios';
 import React, { useState } from 'react'
-import './CreatePost.css'
+import './CreatePost.css';
+import './global.js'
 document.body.style.zoom="100%"
 
 
 function CreatePost() {
-    const [title, setTitle] = useState('')
     const [caption, setCaption] = useState('')
-    const [picture, setPicture] = useState('')
+    const [picture, setPicture] = useState(null)
     const [submitted, setSubmitted] = useState(false)
-
     const create = a => {
+        var FormData = require('form-data');
+        var fs = require('fs');
+        var form = new FormData();
+        form.append("image", picture)
+        form.append("content", caption)
+        axios.post("http://localhost:3000/accounts/" + global._id + "/posts", form)
+        console.log("I came here")
         a.preventDefault()
         setSubmitted(true)
     }
-    const message = <p class="message">Post Created Successfully!</p>
+    const message = <p className="message">Post Created Successfully!</p>
     const form = 
-    <div class="background">
-        <form onSubmit={create} class="formarea">
-            <h3 class="header">Create Post</h3>
-            <label htmlFor="title">Title</label> 
-            <br />
-            <input
-                class="input"
-                name="title"
-                type="text"
-                value= {title}
-                placeholder="What's on your mind?" required
-                onChange= {text => setTitle(text.target.value)}
-            />
+    <div className="background">
+        <form onSubmit={create} className="formarea">
+            <h3 className="header">Create Post</h3>
             <br />
             <br />
             <label htmlFor="picture">Image</label>
             <br />
             <input
-                class="input"
-                name="picture"
-                type="url"
-                value = {picture}
-                placeholder="Type a URL" required
-                onChange = {text => setPicture(text.target.value)}
+                className="input"
+                //need to somehow make it so that the only acceptable file is image.
+                type="file"
+                accept = "image/*"
+                onChange = {text => setPicture(text.target.files[0])}
             />
             <br />
             <br />
             <label htmlFor="caption">Caption</label>
             <br />
             <textarea
-                class="input"
+                className="input"
                 name="caption"
                 rows="5"
                 value = {caption}
@@ -54,7 +50,7 @@ function CreatePost() {
             />
             <br />
             <br />
-            <button type="submit" class="share">Share</button>
+            <button type="submit" className="share">Share</button>
         </form>
     </div>
 

@@ -5,13 +5,13 @@ import NavBar from './NavBar'
 import './Login.css'
 
 function Login() {
-    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [submitted, setSubmitted] = useState(false)
 
     const submit = e => {
         axios.post('http://localhost:3000/login/', {
-            name: email,
+            name: username,
             password: password
         })
         e.preventDefault()
@@ -25,8 +25,8 @@ function Login() {
             <br />
             <input
                 name="username"
-                value= {email}
-                onChange= {text => setEmail(text.target.value)}
+                value= {username}
+                onChange= {text => setUsername(text.target.value)}
             />
             <br />
             <br />

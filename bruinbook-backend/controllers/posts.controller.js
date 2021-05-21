@@ -3,14 +3,11 @@ const Post = require('../models/post');
 
 require('dotenv').config();
 const uploads = require('../middleware/multer').uploads;
-const uploader = require('cloudinary').v2.uploader;
+const cloudinary = require('cloudinary').v2.uploader;
 const dataUri = require('datauri/parser');
 const path = require('path');
 
-
-
 const dUri = new dataUri(); 
-
 
 const getAllPosts = (req, res, next) => {
     console.log(`Getting all posts for account`);
@@ -20,7 +17,7 @@ const getAllPosts = (req, res, next) => {
         .catch(error => next(error));
 };
 
-const postNewPost = (req, res, next) => {
+const postNewPost = async (req, res, next) => {
     console.log(`Posting new post for account`);
 
     const post = new Post(req.body);
@@ -28,12 +25,15 @@ const postNewPost = (req, res, next) => {
     post.author = req.params.accountId;
     const image = dUri.format(path.extname(req.file.originalname), req.file.buffer).content;
 
-    uploader.upload(image)
-        .then((img) => { post.imgUrl = img.url})
-        .then(() => post.save())
-        .then(data => Account.findByIdAndUpdate(req.params.accountId, { $push: { "posts": data._id} }))
-        .then(data => res.json(data))
-        .catch(error => next(error));
+    try {
+        const img = await cloudinary.upload(image);
+        post.imgUrl = img.url;
+        const postData = await post.save();
+        await Account.findByIdAndUpdate(req.params.accountId, { $push: { "posts": postData._id} });
+        res.json(postData);
+    } catch (error) {
+        next(error);
+    }
     
 };
 
@@ -52,10 +52,21 @@ const patchSinglePost = (req, res, next) => {
         .catch(error => next(error));
 };
 
-const deleteSinglePost = (req, res, next) => {
-    Post.findByIdAndDelete(req.params.postId)
-        .then(data => res.json(data))
-        .catch(error => next(error));
+const deleteSinglePost = async (req, res, next) => {
+
+    try {
+        const post = await Post.findByIdAndDelete(req.params.postId);
+
+        //hacky solution; extract the unique id of image from the url.
+            //it is always the very last bit of the url.
+        const imgUniqueId = post.imgUrl.match(/\/(?<id>\w+)(\.png|\.jpg)$/).groups.id;
+        await cloudinary.destroy(imgUniqueId);
+        await Account.findByIdAndUpdate(req.params.accountId, { $pull: { "posts": post._id} });
+        res.json(post);
+
+    } catch(error) {
+        next(error);
+    }
 };
 
 module.exports = {

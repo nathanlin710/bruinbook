@@ -11,12 +11,10 @@ function CreatePost() {
     const [submitted, setSubmitted] = useState(false)
     const create = a => {
         var FormData = require('form-data');
-        var fs = require('fs');
         var form = new FormData();
         form.append("image", picture)
         form.append("content", caption)
         axios.post("http://localhost:3000/accounts/" + global._id + "/posts", form)
-        console.log("I came here")
         a.preventDefault()
         setSubmitted(true)
     }

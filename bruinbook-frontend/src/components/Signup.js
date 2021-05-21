@@ -11,7 +11,6 @@ function Signup() {
     const submit = e => {
         e.preventDefault()
         axios.post('http://localhost:3000/auth/register/', {
-            name: email,
             username: email,
             password: password
         })

@@ -11,7 +11,6 @@ function Login() {
 
     const submit = e => {
         axios.post('http://localhost:3000/auth/login/', {
-            name: username,
             username: username,
             password: password
         }).then((response) => {

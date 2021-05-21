@@ -6,13 +6,16 @@ import axios from 'axios'
 
 function Home () {
     const [postArray, setPostArray] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     function generatePosts(){
-        axios.get("http://localhost:3000/accounts/60a35c41d5dbf13014e4cf1b/posts").then(response => 
+        if (loading){
+            axios.get("http://localhost:3000/accounts/60a35c41d5dbf13014e4cf1b/posts").then(response => 
             {setPostArray(response.data)
             setLoading(false)}
         )
+        }
+        
 
         if(loading){
             return <p>Loading</p>

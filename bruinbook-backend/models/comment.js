@@ -7,6 +7,11 @@ const CommentSchema = new Schema({
         ref: 'Account',
         required: 'comment author is required'
     },
+    post: {
+        type: Schema.Types.ObjectId,
+        ref: 'Post',
+        required: 'comment post is required'
+    },
     comment: {
         type: String,
         required: 'comment body is required'

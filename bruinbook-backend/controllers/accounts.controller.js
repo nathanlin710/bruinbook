@@ -27,9 +27,29 @@ const deleteSingleAccount = (req, res, next) => {
         .catch(error => next(error));
 };
 
+const feed = async (req, res, next) => {
+
+    try {
+        const account = await Account.findById(req.params.accountId).populate('posts');
+        const following = account.following;
+        let posts = account.posts;
+
+        for (let i = 0; i < following.length; i++) {
+            const accWithPosts = await Account.findById(following[i]).populate('posts');
+            for (let j = 0; j < accWithPosts.posts.length; j++){
+                posts.push(accWithPosts.posts[j]);
+            }
+        }
+        res.json(posts);
+    } catch(error) {
+        next(error);
+    }
+}
+
 module.exports = {
     "getAll": getAllAccounts,
     "getSingle": getSingleAccount,
     "patchSingle": patchSingleAccount,
-    "deleteSingle": deleteSingleAccount
+    "deleteSingle": deleteSingleAccount,
+    "feed" : feed
 }

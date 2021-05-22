@@ -10,6 +10,8 @@ accounts.get('/:accountId', controller.getSingle);
 accounts.patch('/:accountId', controller.patchSingle);
 accounts.delete('/:accountId', controller.deleteSingle);
 
+accounts.get('/:accountId/feed', controller.feed);
+
 accounts.use('/:accountId/following', following);
 
 accounts.use('/:accountId/posts', posts);

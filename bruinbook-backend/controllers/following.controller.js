@@ -2,6 +2,7 @@ const Account = require('../models/account');
 
 const getAllFollowing = (req, res, next) => {
     Account.findById(req.params.accountId)
+        .populate('following')
         .then(data => res.status(200).json(data.following))
         .catch(error => next(error));
 };

@@ -15,10 +15,15 @@ const PostSchema = new Schema({
     type: String,
     required: 'post image url is required'
   },
-  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
-  
+  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 }, {timestamps: true});
 
+PostSchema.virtual('imgUniqueId').get(function() {
+  return this.imgUrl.match(/\/(?<id>\w+)(\.png|\.jpg)$/).groups.id;
+});
+
 const Post = mongoose.model('Post', PostSchema);
+
+
 
 module.exports = Post;  

@@ -10,7 +10,7 @@ const path = require('path');
 const dUri = new dataUri(); 
 
 const getAllPosts = (req, res, next) => {
-    console.log(`Getting all posts for account`);
+    console.log(`Getting all Posts for Account`);
     Account.findById(req.params.accountId)
         .populate('posts')
         .then(data => res.json(data.posts))
@@ -18,10 +18,9 @@ const getAllPosts = (req, res, next) => {
 };
 
 const postNewPost = async (req, res, next) => {
-    console.log(`Posting new post for account`);
+    console.log(`Posting new Post for Account`);
 
     const post = new Post(req.body);
-    console.log(post);
     post.author = req.params.accountId;
     const image = dUri.format(path.extname(req.file.originalname), req.file.buffer).content;
 
@@ -53,13 +52,9 @@ const patchSinglePost = (req, res, next) => {
 };
 
 const deleteSinglePost = async (req, res, next) => {
-
     try {
         const post = await Post.findByIdAndDelete(req.params.postId);
-
-        //hacky solution; extract the unique id of image from the url.
-            //it is always the very last bit of the url.
-        const imgUniqueId = post.imgUrl.match(/\/(?<id>\w+)(\.png|\.jpg)$/).groups.id;
+        const imgUniqueId = post.imgUniqueId;
         await cloudinary.destroy(imgUniqueId);
         await Account.findByIdAndUpdate(req.params.accountId, { $pull: { "posts": post._id} });
         res.json(post);

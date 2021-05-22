@@ -11,7 +11,7 @@ const CommentSchema = new Schema({
         type: String,
         required: 'comment body is required'
     }
-}, { timestamps: true });
+}, { timestamps: true } );
 
 const Comment = mongoose.model('Comment', CommentSchema);
 

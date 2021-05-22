@@ -22,25 +22,38 @@ const patchSingleAccount = (req, res, next) => {
 };
 
 const deleteSingleAccount = (req, res, next) => {
+    console.log("Deleting single Account");
     Account.findByIdAndDelete(req.params.accountId)
         .then(data => res.status(200).json(data))
         .catch(error => next(error));
 };
 
 const feed = async (req, res, next) => {
-
+    console.log("Getting feed of single Account");
     try {
-        const account = await Account.findById(req.params.accountId).populate('posts');
-        const following = account.following;
-        let posts = account.posts;
-
-        for (let i = 0; i < following.length; i++) {
-            const accWithPosts = await Account.findById(following[i]).populate('posts');
-            for (let j = 0; j < accWithPosts.posts.length; j++){
-                posts.push(accWithPosts.posts[j]);
+        const account = await Account.findById(req.params.accountId).populate({
+            path: 'posts',
+            populate: { path : 'author', select : 'username'}
+        }).populate({
+            path: 'following',
+            populate: {
+                path : 'posts',
+                populate: {path : 'author', select : 'username'}
             }
-        }
-        res.json(posts);
+        });
+
+        let feed = account.posts;
+        account.following.forEach(acc => {
+            acc.posts.forEach(post => {
+                feed.push(post);
+            });
+        });
+
+        feed.sort((p1, p2) => {
+            return Date.parse(p2.createdAt) - Date.parse(p1.createdAt);
+        });
+        
+        res.json(feed);
     } catch(error) {
         next(error);
     }

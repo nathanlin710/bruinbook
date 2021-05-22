@@ -8,7 +8,7 @@ const getAllFollowing = (req, res, next) => {
 };
 
 const followAccount = async (req, res, next) => {
-    Account.findByIdAndUpdate(req.params.accountId, { $push : { following : req.params.followId}}, {new : true})
+    Account.findByIdAndUpdate(req.params.accountId, { $addToSet : { following : req.params.followId}}, {new : true})
         .then(data => res.status(200).json(data))
         .catch(error => next(error));
 };

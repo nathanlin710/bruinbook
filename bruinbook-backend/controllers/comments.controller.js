@@ -29,7 +29,7 @@ const getComment = (req, res, next) => {
 const deleteComment = async (req, res, next) => {
     try {
         const commentData = await Comment.findByIdAndDelete(req.params.commentId);
-        Post.findByIdAndUpdate(req.params.postId, { $pull : { "comments" : commentData._id}});
+        await Post.findByIdAndUpdate(req.params.postId, { $pull : { "comments" : commentData._id}});
         res.json(commentData);
     } catch(error) {
         next(error);

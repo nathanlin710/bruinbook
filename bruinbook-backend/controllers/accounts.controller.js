@@ -33,18 +33,23 @@ const feed = async (req, res, next) => {
     try {
         const account = await Account.findById(req.params.accountId).populate({
             path: 'posts',
-            populate: { path : 'author', select : 'username'}
+            populate: [{ path: 'author', select: 'username'}, 
+                    { path: 'comments', populate : { path: 'author', select: 'username' } }]
         }).populate({
             path: 'following',
             populate: {
                 path : 'posts',
-                populate: {path : 'author', select : 'username'}
+                populate: [{ path: 'author', select: 'username'}, 
+                         { path: 'comments', populate : { path: 'author', select: 'username' } }]
             }
         });
 
         let feed = account.posts;
         account.following.forEach(acc => {
             acc.posts.forEach(post => {
+                post.comments.sort((c1, c2) => {
+                    return Date.parse(c1.createdAt) - Date.parse(c2.createdAt);
+                });
                 feed.push(post);
             });
         });

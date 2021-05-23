@@ -15,7 +15,8 @@ const PostSchema = new Schema({
     type: String,
     required: 'post image url is required'
   },
-  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+  comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+  reactions: [{type: Schema.Types.ObjectId, ref: 'Reaction'}]
 }, {timestamps: true});
 
 PostSchema.virtual('imgUniqueId').get(function() {

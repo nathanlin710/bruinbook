@@ -1,14 +1,20 @@
 import CreatePost from './CreatePost';
 import Post from './Post'
 import NavBar from './NavBar'
-import UserSearchBar from './UserSearchBar'
 import React, { useState } from 'react'
 import axios from 'axios'
 
 function Home () {
     const [postArray, setPostArray] = useState([])
     const [loading, setLoading] = useState(true)
-
+    //why doesn't this work??
+    axios.get("http://localhost:3000/auth/logged_in").then(response =>
+        {   console.log(response.data["logged_in"])
+            if(response.data["logged_in"] === true){
+            global._id = response.data["user"]["_id"]
+            console.log(response.data["user"]["_id"])
+        }}
+    )
     function generatePosts(){
         if(global._id === ""){
             //toggle between those 2 options for testing
@@ -49,7 +55,6 @@ function Home () {
     return (
         <div>
             <NavBar />
-            <UserSearchBar/>
             <CreatePost />
             {generatePosts()}
         </div>

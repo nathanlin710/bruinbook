@@ -14,6 +14,7 @@ function NavBar() {
     return (
         <div className="bar">
             <Link className="button-link" to="/">Home</Link>
+            <Link className= "button-link" to="/UserSearchBar">UserSearchBar</Link>
             {loggedIn ? <button className="button-link" onClick={() => setLoggedIn(false)}/> : notLoggedButtons}     
         </div>
     )

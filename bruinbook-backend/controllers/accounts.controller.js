@@ -34,13 +34,15 @@ const feed = async (req, res, next) => {
         const account = await Account.findById(req.params.accountId).populate({
             path: 'posts',
             populate: [{ path: 'author', select: 'username'}, 
-                    { path: 'comments', populate : { path: 'author', select: 'username' } }]
+                    { path: 'comments', populate : { path: 'author', select: 'username' } },
+                    { path: 'reactions', populate: {path: 'author', select: 'username'} }]
         }).populate({
             path: 'following',
             populate: {
                 path : 'posts',
                 populate: [{ path: 'author', select: 'username'}, 
-                         { path: 'comments', populate : { path: 'author', select: 'username' } }]
+                         { path: 'comments', populate : { path: 'author', select: 'username' } },
+                         { path: 'reactions', populate: {path: 'author', select: 'username'} } ]
             }
         });
 

@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ReactionSchema = new Schema({
-    reactionType: {
-        type: Number,
-        required: 'must have reaction type'
-    },
-    account: {
+    author: {
         type: Schema.Types.ObjectId,
         ref: 'Account',
-        required: 'must associate account with reaction'
+        required: 'reaction must have author'
     },
     post: {
         type: Schema.Types.ObjectId,
         ref: 'Post',
         required: 'must react to specific post'
+    },
+    reactionType: {
+        type: Number,
+        required: 'must have reaction type'
     }
 });
 

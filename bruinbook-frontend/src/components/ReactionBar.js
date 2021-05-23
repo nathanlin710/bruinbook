@@ -8,7 +8,7 @@ class ReactionBar extends React.Component {
         this.state = {
             buttonClicked: Array(5).fill(false),
             buttonTotal: [300, 400, 200, 100, 200],
-            icons: ["heart", "heart", "heart", "heart", "bruin"]
+            icons: ["heart", "eggert", "cat", "thumb", "bruin"]
         };
     }
 

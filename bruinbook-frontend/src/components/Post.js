@@ -25,10 +25,10 @@ function Post(props) {
         <ReactionBar/>
       </div>
       <div>
-        <CreateComment/>
+        <CreateComment accountId={props.accountId} postId={props.postId}/> 
       </div>
       <div>
-        <CommentSection array={props.comments}/>
+        <CommentSection array={props.comments} />
       </div>
     </article>
   );

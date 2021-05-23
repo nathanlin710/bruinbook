@@ -29,7 +29,6 @@ function CreatePost() {
             <br />
             <input
                 className="input"
-                //need to somehow make it so that the only acceptable file is image.
                 type="file"
                 accept = "image/*"
                 onChange = {text => setPicture(text.target.files[0])}

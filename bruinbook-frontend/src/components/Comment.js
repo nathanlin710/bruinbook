@@ -1,12 +1,18 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import './Comment.css'
 document.body.style.zoom="100%"
 
-function CreateComment() {
+function CreateComment(props) {
     const [comment, setComment] = useState('')
     const [submitted, setSubmitted] = useState(false)
 
     const create = a => {
+        axios.post("http://localhost:3000/accounts/" + props.accountId + "/posts/" + props.postId + "/comments",
+            {comment: comment,
+             author: global._id
+            }
+        )
         a.preventDefault()
         setSubmitted(true)
     }

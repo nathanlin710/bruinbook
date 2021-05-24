@@ -7,16 +7,6 @@ import axios from 'axios'
 function Home () {
     const [postArray, setPostArray] = useState([])
     const [loading, setLoading] = useState(true)
-    //why doesn't this work??
-    const [attemptToLogin, setAttemptToLogin] = useState(true)
-    if(global._id === ""){
-        axios.get("http://localhost:3000/auth/logged_in", { withCredentials: true }).then(response =>
-        {   if(response.data["logged_in"] === true){
-            global._id = response.data["user"]["_id"]
-            setAttemptToLogin(false)
-        }}
-    )
-    }
     function generatePosts(){
         if(global._id === ""){
             //toggle between those 2 options for testing

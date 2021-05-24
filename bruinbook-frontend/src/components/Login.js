@@ -13,7 +13,8 @@ function Login() {
         axios.post('http://localhost:3000/auth/login/', {
             username: username,
             password: password
-        }).then((response) => {
+        }, { withCredentials: true }).then((response) => {
+            console.log(response)
             global._id = response.data["_id"];
           }, (error) => {
             console.log(error);

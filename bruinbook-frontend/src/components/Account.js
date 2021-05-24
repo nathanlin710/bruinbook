@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 
 function Account (props){
     const [Action, setAction] = useState('Loading') 
-    var a;
     function toggle(){
         console.log("i'm calling this")
         if (Action === "Unfollow"){

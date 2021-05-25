@@ -3,6 +3,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import SignUp from './components/Signup'
 import UserSearchBar from './components/UserSearchBar'
+import SinglePost from './components/SinglePost'
 import React, { useState } from 'react'
 import axios from 'axios'
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
@@ -24,6 +25,7 @@ function App() {
         <Route exact path='/login' component={Login} />
         <Route exact path='/signup' component={SignUp} />
         <Route exact path='/UserSearchBar' component={UserSearchBar} />
+        <Route path='/post/:username/:id' component={SinglePost} />
       </Switch>
     </BrowserRouter>
   );

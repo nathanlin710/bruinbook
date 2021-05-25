@@ -4,9 +4,10 @@ import NavBar from './NavBar'
 import './Signup.css'
 
 function Signup() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [submitted, setSubmitted] = useState(false)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const [message, setMessage] = useState(<div></div>);
 
     const submit = e => {
         e.preventDefault()
@@ -16,15 +17,16 @@ function Signup() {
         })
         .then((response) =>{
             console.log('done');
+            setMessage(<p>Account has been created!</p>);
         }, (error) => {
             console.log('failed');
+            setMessage(<p>Something went wrong, try again.</p>)
         });
         setSubmitted(true)
     }
 
-    const message = <p>Account has been created!</p>
     const form = 
-        <form onSubmit={submit} className='signup-box'>
+        <form onSubmit={submit}>
             <label htmlFor="username">Username</label> 
             <br />
             <input
@@ -50,7 +52,9 @@ function Signup() {
     return (
         <div className='signup-background'>
             <NavBar />
-            {submitted ? message : form}
+            <div className="signup-box">
+                {submitted ? message : form}
+            </div>
         </div>
     )
     

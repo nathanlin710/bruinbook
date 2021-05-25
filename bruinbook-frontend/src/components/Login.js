@@ -8,6 +8,7 @@ function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [submitted, setSubmitted] = useState(false)
+    const [message, setMessage] = useState(<div></div>)
 
     const submit = e => {
         axios.post('http://localhost:3000/auth/login/', {
@@ -15,17 +16,18 @@ function Login() {
             password: password
         }, { withCredentials: true }).then((response) => {
             console.log(response)
+            setMessage(<p>Login Successful</p>);
             global._id = response.data["_id"];
           }, (error) => {
+            setMessage(<p>Login Failed</p>);
             console.log(error);
           });
         e.preventDefault()
         setSubmitted(true)
     }
 
-    const message = <p>Sent Login</p>
     const form = 
-        <form onSubmit={submit} className='login-box'>
+        <form onSubmit={submit}>
             <label htmlFor="username">Username</label> 
             <br />
             <input
@@ -51,7 +53,7 @@ function Login() {
     return (
         <div className="login-background">
             <NavBar />
-            <div>
+            <div className='login-box'>
                 {submitted ? message : form}
             </div>   
         </div>

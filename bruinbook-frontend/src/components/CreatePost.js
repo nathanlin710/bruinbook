@@ -24,13 +24,12 @@ function CreatePost() {
         <form onSubmit={create} className="formarea">
             <h3 className="header">Create Post</h3>
             <br />
-            <br />
             <label htmlFor="picture">Image</label>
             <br />
             <input
                 className="input"
                 type="file"
-                accept = "image/*"
+                accept = "image/*" required
                 onChange = {text => setPicture(text.target.files[0])}
             />
             <br />

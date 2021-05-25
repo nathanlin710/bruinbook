@@ -16,7 +16,7 @@ function CreateComment(props) {
         a.preventDefault()
         setSubmitted(true)
     }
-    const message = <p class="message">Comment Submitted Successfully!</p>
+    const message = <p class="msg">Comment Submitted Successfully!</p>
     const form = 
     <div class="outside">
         <form onSubmit={create} class="boxarea">
@@ -29,7 +29,7 @@ function CreateComment(props) {
             />
             <br />
             <br />
-            <button type="submit" class="share">Submit</button>
+            <button type="submit" class="sub">Submit</button>
         </form>
     </div>
 

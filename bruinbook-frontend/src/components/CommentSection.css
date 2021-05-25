@@ -1,4 +1,8 @@
 .CommentSection{
     height: 100px;
     overflow: auto;
+    color: white;
+    overflow-y: auto;
+    margin-left: 2%;
+    letter-spacing: 0.6px;
 }

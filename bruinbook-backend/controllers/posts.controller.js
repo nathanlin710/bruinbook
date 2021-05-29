@@ -39,6 +39,15 @@ const postNewPost = async (req, res, next) => {
 const getSinglePost = (req, res, next) => {
     console.log(`Getting single Post`);
     Post.findById(req.params.postId)
+        .populate('author', 'username')
+        .populate({
+            path: 'comments',
+            populate: { path: 'author', select: 'username'}
+        })
+        .populate({
+            path: 'reactions',
+            populate: { path: 'author', select: 'username'}
+        })
         .then(data => res.json(data))
         .catch(error => next(error));
 

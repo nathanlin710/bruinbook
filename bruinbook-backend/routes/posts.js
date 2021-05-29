@@ -4,7 +4,7 @@ const comments = require('./comments');
 const reactions = require('./reactions');
 const controller = require('../controllers/posts.controller')
 
-posts.get('/', controller.getAll);
+posts.get('/', controller.getAllPostOfAccount);
 posts.post('/', controller.post);
 
 posts.get('/:postId', controller.getSingle);

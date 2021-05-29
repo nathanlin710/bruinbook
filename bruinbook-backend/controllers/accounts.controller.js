@@ -1,8 +1,23 @@
 const Account = require('../models/account');
 
-const getAllAccounts = (req, res, next) => {
-    console.log(`Getting Account`)
-    Account.find()
+const getAllAccounts = async (req, res, next) => {
+    try {
+        let accounts;
+        if (req.query.hasOwnProperty('name')) {
+            accounts = await Account.find({ 'username': { "$regex": req.query.name, "$options": "i"}});
+        } else {
+            accounts = await Account.find();
+        }
+        res.json(accounts);
+    } catch(error) {
+        next(error);
+    }
+};
+
+const searchAllAccounts = (req, res, next) => {
+    query = req.body.query;
+    console.log(query);
+    Account.find({ 'username': { "$regex": query, "$options": "i"}})
         .then(data => res.json(data))
         .catch(error => next(error));
 };

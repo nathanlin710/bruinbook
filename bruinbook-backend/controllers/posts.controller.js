@@ -9,7 +9,38 @@ const path = require('path');
 
 const dUri = new dataUri(); 
 
-const getAllPosts = (req, res, next) => {
+const getAllPosts = async (req, res, next) => {
+
+    populationObject = [{ path: 'author', select: 'username'}, 
+                     { path: 'comments', populate : { path: 'author', select: 'username' } },
+                     { path: 'reactions', populate: {path: 'author', select: 'username'} } ];
+
+    try {
+        let posts;
+        if (req.query.hasOwnProperty('keyword')) {
+            posts = await Post.find({ 'content': { "$regex": req.query.keyword, "$options": "i"}})
+                .populate(populationObject);
+        } else {
+            posts = await Post.find().populate(populationObject);
+        }
+
+        posts.forEach(post => {
+            post.comments.sort((c1, c2) => {
+                return Date.parse(c1.createdAt) - Date.parse(c2.createdAt);
+            })
+        });
+
+        posts.sort((p1, p2) => {
+            return Date.parse(p2.createdAt) - Date.parse(p1.createdAt);
+        });        
+
+        res.json(posts);
+    } catch(error) {
+        next(error);
+    }
+};
+
+const getAllPostsOfAccount = (req, res, next) => {
     console.log(`Getting all Posts for Account`);
     Account.findById(req.params.accountId)
         .populate('posts')
@@ -75,6 +106,7 @@ const deleteSinglePost = async (req, res, next) => {
 
 module.exports = {
     "getAll": getAllPosts,
+    "getAllPostOfAccount": getAllPostsOfAccount,
     "post": [uploads, postNewPost],
     "getSingle": getSinglePost,
     "patchSingle": patchSinglePost,

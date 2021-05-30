@@ -6,6 +6,6 @@ reactions.get('/', controller.getReactions);
 reactions.post('/', controller.postReaction);
 
 reactions.get('/:reactionAccountId', controller.getReaction);
-reactions.get('/:reactionId', controller.deleteReaction);
+reactions.delete('/:reactionId', controller.deleteReaction);
 
 module.exports = reactions;

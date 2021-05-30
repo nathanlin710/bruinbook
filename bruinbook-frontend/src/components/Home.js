@@ -72,7 +72,6 @@ function Home () {
         <div>
             <NavBar onLogOut={() => { setLoading(true) }}/>
         <div className="home-background">
-            <NavBar />
             <CreatePost onSubmit={() => { setLoading(true) }}/>
             {generatePosts()}
         </div>

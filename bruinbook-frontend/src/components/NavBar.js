@@ -32,7 +32,7 @@ function NavBar() {
     return (
         <div className="bar">
             <Link className="button-link" to="/">Home</Link>
-            <Link className="button-link" to="/UserSearchBar">UserSearchBar</Link>
+            <Link className="button-link" to="/UserSearchBar">Search</Link>
             {dynamicButtons}
         </div>
     )

@@ -14,7 +14,7 @@ function CreatePost(props) {
         var form = new FormData();
         form.append("image", picture)
         form.append("content", caption)
-        axios.post("http://localhost:3000/accounts/" + global._id + "/posts", form).then(props.onSubmit())
+        axios.post("http://localhost:3000/accounts/" + global._id + "/posts", form).then(response => props.onSubmit())
         a.preventDefault()
         setSubmitted(true)
     }

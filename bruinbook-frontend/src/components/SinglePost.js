@@ -20,7 +20,7 @@ function SinglePost(props) {
     }
     
     
-        if (loading == false) {
+        if (loading === false) {
             console.log(info["comments"])
             let comments = []
             for(let j = 0; j < info["comments"].length; j++){

@@ -23,9 +23,9 @@ function Account(props) {
     })
     if (global._id !== props.id) {
         return (
-            <div>
+            <div style={{marginBottom: 10}}>
                 {props.username}
-                <button onClick={() => { toggle() }}>{Action}</button>
+                <button style={{marginLeft: 10}} onClick={() => { toggle() }}>{Action}</button>
             </div>
         )
     }

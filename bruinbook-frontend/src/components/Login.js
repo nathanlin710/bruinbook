@@ -18,6 +18,7 @@ function Login() {
             console.log(response)
             setMessage(<p>Login Successful</p>);
             global._id = response.data["_id"];
+            global.user = response.data["username"]
           }, (error) => {
             setMessage(<p>Login Failed</p>);
             console.log(error);

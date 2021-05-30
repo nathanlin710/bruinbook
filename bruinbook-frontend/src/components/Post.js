@@ -1,7 +1,6 @@
 import React from "react";
 import './Post.css';
 import ReactionBar from './ReactionBar.js';
-import CommentSection from './CommentSection.js'
 import CreateComment from "./Comment.js";
 
 // renders a Post component
@@ -26,10 +25,7 @@ function Post(props) {
         <ReactionBar accountId={props.accountId} postId={props.postId} reactions={props.reactions} myReactions={props.myReactions} reactionId={props.reactionId}/>
       </div>
       <div>
-        <CreateComment accountId={props.accountId} postId={props.postId}/> 
-      </div>
-      <div>
-        <CommentSection array={props.comments} />
+        <CreateComment accountId={props.accountId} postId={props.postId} array={props.comments}/> 
       </div>
       <div className = "sharepost">
         <p>Share this Post using the link</p>

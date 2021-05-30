@@ -16,7 +16,7 @@ function NavBar() {
     }
 
     const logOut = () => {
-        axios.get("http://localhost:3000/auth/logout").then(response => {
+        axios.get("http://localhost:3000/auth/logout", { withCredentials: true }).then(response => {
             console.log(response);
             global._id = "";
             dynamicButtons =

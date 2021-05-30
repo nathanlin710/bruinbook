@@ -13,7 +13,10 @@ function App() {
     if(global._id === ""){
         axios.get("http://localhost:3000/auth/logged_in", { withCredentials: true }).then(response =>
         {   if(response.data["logged_in"] === true){
+          console.log(response.data)
             global._id = response.data["user"]["_id"]
+            global.user = response.data["user"]["username"]
+            console.log(global.user) 
             setAttemptToLogin(false)
         }}
     )

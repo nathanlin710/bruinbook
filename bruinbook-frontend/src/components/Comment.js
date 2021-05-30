@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import './Comment.css'
+import CommentSection from './CommentSection.js'
 document.body.style.zoom="100%"
 
 function CreateComment(props) {
-    
     const [comment, setComment] = useState('')
     const [submitted, setSubmitted] = useState(false)
-
+    const [array, setArray] = useState(props.array.slice())
     const create = a => {
         setSubmitted(false)
         axios.post("http://localhost:3000/accounts/" + props.accountId + "/posts/" + props.postId + "/comments",
@@ -15,6 +15,8 @@ function CreateComment(props) {
              author: global._id
             }
         )
+        setArray(array.concat([[global.user, comment]]))
+        console.log(array)
         a.preventDefault()
         setSubmitted(true)
     }
@@ -38,6 +40,7 @@ function CreateComment(props) {
     return (
         <div>
             {submitted ? message : form}
+            <CommentSection array={array}/>
         </div>
     )
     

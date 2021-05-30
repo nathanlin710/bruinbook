@@ -28,6 +28,8 @@ function Login() {
     }
 
     const form = 
+    <div>
+    <h1>Login</h1>
         <form onSubmit={submit}>
             <label htmlFor="username">Username</label> 
             <br />
@@ -50,6 +52,7 @@ function Login() {
             <br />
             <button type="submit">Login</button>
         </form>
+        </div>
 
     return (
         <div className="login-background">

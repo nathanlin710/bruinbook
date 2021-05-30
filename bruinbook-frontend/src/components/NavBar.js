@@ -26,6 +26,7 @@ function NavBar() {
                 </Fragment>)
         }
         )
+        this.setState(this.state);
     }
 
     return (

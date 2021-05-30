@@ -29,12 +29,15 @@ function SinglePost(props) {
             //parse reactions
             let reactions = [0, 0, 0, 0, 0]
             let myReactions = [false, false, false, false, false]
+            let reactionId = [null, null, null, null, null]
             for(let j = 0; j < info["reactions"].length; j++){
                 let k = info["reactions"][j]["reactionType"]
                 console.log(info["reactions"][j]["author"]["_id"] === global._id)
                 if(info["reactions"][j]["author"]["_id"] === global._id){
                     myReactions[k] = true;
+                    reactionId[k]=info["reactions"][j]["_id"]
                 }
+                console.log(reactionId)
                 reactions[k] = reactions[k] + 1
             }
             result = <Post 
@@ -46,6 +49,7 @@ function SinglePost(props) {
             postId = {info["_id"]}
             reactions = {reactions}
             myReactions = {myReactions}
+            reactionId = {reactionId}
             />
         } 
   return (

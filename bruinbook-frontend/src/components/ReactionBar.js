@@ -10,25 +10,38 @@ class ReactionBar extends React.Component {
             buttonClicked: this.props.myReactions,
             buttonTotal: this.props.reactions,
             reactionId: this.props.reactionId,
-            icons: ["heart", "eggert", "cat", "thumb", "bruin"]
+            icons: ["heart", "eggert", "cat", "thumb", "bruin"],
+            loading: false
         };
         for(let i = 0; i < this.state.buttonClicked.length; i++){
             if(this.state.buttonClicked[i] == true){
                 this.state.icons[i] = this.state.icons[i] + "clicked"
             }
         }
+        console.log(this.props.reactionId)
     }
    
     handleClick(i){
+        if(this.state.loading == true){
+            return;
+        }
+        else{
+            this.setState({loading: true})
+        }
+        this.setState({loading: true})
         const buttonClicked = this.state.buttonClicked.slice();
         const buttonTotal = this.state.buttonTotal.slice();
         const icons = this.state.icons.slice();
         const reactionId = this.state.reactionId.slice();
+        console.log("xxxxxx")
+        console.log(reactionId)
         if (buttonClicked[i] === true){
             buttonClicked[i] = false;
             icons[i] = icons[i].slice(0, -7);
             buttonTotal[i] = buttonTotal[i] - 1;
-            axios.delete("http://localhost:3000/accounts/" + this.props.accountId + "/posts/" + this.props.postId + "/reactions/" + this.state.reactionId)
+            console.log("xxxxx")
+            console.log(this.state.reactionId)
+            axios.delete("http://localhost:3000/accounts/" + this.props.accountId + "/posts/" + this.props.postId + "/reactions/" + this.state.reactionId[i]).then(response => this.setState({loading: false}))
         }
         else{
             buttonClicked[i] = true;
@@ -37,13 +50,14 @@ class ReactionBar extends React.Component {
             console.log(this.state.reactionId[i])
             axios.post("http://localhost:3000/accounts/" + this.props.accountId + "/posts/" + this.props.postId + "/reactions", {author: global._id,
             reactionType: i
-           }).then(response => reactionId[i] = response.data["_id"])
+           }).then(response => {reactionId[i] = response.data["_id"]; this.setState({loading: false})})
             //alert server
         }
         this.setState({
             buttonClicked: buttonClicked,
             buttonTotal: buttonTotal,
-            icons: icons
+            icons: icons,
+            reactionId: reactionId
         });
     }
 

@@ -41,7 +41,9 @@ function Home () {
                     console.log(postArray[i]["reactions"][j]["author"]["_id"] === global._id)
                     if(postArray[i]["reactions"][j]["author"]["_id"] === global._id){
                         myReactions[k] = true;
-                        reactionId[i]=postArray[i]["reactions"][j]["_id"]
+                        console.log("yyyyyyyyyyy")
+                        reactionId[k]=postArray[i]["reactions"][j]["_id"]
+                        console.log(reactionId)
                     }
                     reactions[k] = reactions[k] + 1
                 }

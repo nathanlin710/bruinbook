@@ -6,6 +6,7 @@ import CreateComment from "./Comment.js";
 
 // renders a Post component
 function Post(props) {
+  let link = "http://localhost:3001/post/" + props.accountId + "/" + props.postId
   return (
       <article className="Post">
       <header>
@@ -22,13 +23,17 @@ function Post(props) {
         <p className = "caption">{props.caption}</p>
       </div>
       <div>
-        <ReactionBar/>
+        <ReactionBar accountId={props.accountId} postId={props.postId} reactions={props.reactions} myReactions={props.myReactions} reactionId={props.reactionId}/>
       </div>
       <div>
         <CreateComment accountId={props.accountId} postId={props.postId}/> 
       </div>
       <div>
         <CommentSection array={props.comments} />
+      </div>
+      <div className = "sharepost">
+        <p>Share this Post using the link</p>
+        <a href={link}>{link}</a>
       </div>
     </article>
   );

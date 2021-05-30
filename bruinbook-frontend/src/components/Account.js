@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 function Account(props) {
     const [Action, setAction] = useState('Loading')
     function toggle() {
-        console.log("i'm calling this")
         if (Action === "Unfollow") {
             axios.delete("http://localhost:3000/accounts/" + global._id + "/following/" + props.id)
             setAction('...')

@@ -9,11 +9,12 @@ function UserSearchBar() {
     var loggedIn = false;
 
     const search = e => {
+        setStatus("loading")
         e.preventDefault()
-        console.log({searchText})
-        axios.get("http://localhost:3000/accounts").then(
+        axios.get("http://localhost:3000/accounts?name="+searchText).then(
             response => {
                 setUserArray(response.data)
+                console.log(userArray)
                 setStatus("searched")
             }
         )
@@ -23,7 +24,7 @@ function UserSearchBar() {
         <form onSubmit={search}>
             <input
                 name="searchText"
-                onChange={text => setSearchText(text)}
+                onChange={text => setSearchText(text.target.value)}
             />
             <button type="submit">Submit</button>
         </form>

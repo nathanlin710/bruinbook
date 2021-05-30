@@ -5,7 +5,7 @@ import './global.js'
 document.body.style.zoom="100%"
 
 
-function CreatePost() {
+function CreatePost(props) {
     const [caption, setCaption] = useState('')
     const [picture, setPicture] = useState(null)
     const [submitted, setSubmitted] = useState(false)
@@ -14,7 +14,7 @@ function CreatePost() {
         var form = new FormData();
         form.append("image", picture)
         form.append("content", caption)
-        axios.post("http://localhost:3000/accounts/" + global._id + "/posts", form)
+        axios.post("http://localhost:3000/accounts/" + global._id + "/posts", form).then(props.onSubmit())
         a.preventDefault()
         setSubmitted(true)
     }

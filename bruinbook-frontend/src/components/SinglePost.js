@@ -1,25 +1,52 @@
 import axios from "axios";
-import React from "react";
+import React, {useState} from "react";
 import NavBar from './NavBar'
 import Post from "./Post";
 
-function SinglePost() {
-    let username = this.props.match.params.username;
-    let id = this.props.match.params.id;
-    var info = null;
-
+function SinglePost(props) {
+    let username = props.match.params.username;
+    let id = props.match.params.id;
+    const [info, setInfo]= useState([])
+    const [loading, setLoading] = useState(true)
     var result = <div></div>;
-
-    axios.get('http://localhost:3000/acccounts/' + username + '/posts/' + id)
+    if(loading){
+        axios.get('http://localhost:3000/accounts/' + username + '/posts/' + id)
         .then((response) =>{
-            info = response;
-            console.log(info);
+            setInfo(response.data);
+            setLoading(false)
         }, (error) => {
             console.log('failed');
         });
+    }
     
-        if (info !== null) {
-            result = <Post username={info.caption} />
+    
+        if (loading == false) {
+            console.log(info["comments"])
+            let comments = []
+            for(let j = 0; j < info["comments"].length; j++){
+                comments.push([[info["comments"][j]["author"]["username"]], [info["comments"][j]["comment"]]])
+            }
+            //parse reactions
+            let reactions = [0, 0, 0, 0, 0]
+            let myReactions = [false, false, false, false, false]
+            for(let j = 0; j < info["reactions"].length; j++){
+                let k = info["reactions"][j]["reactionType"]
+                console.log(info["reactions"][j]["author"]["_id"] === global._id)
+                if(info["reactions"][j]["author"]["_id"] === global._id){
+                    myReactions[k] = true;
+                }
+                reactions[k] = reactions[k] + 1
+            }
+            result = <Post 
+            username = {info["author"]["username"]}
+            image = {info["imgUrl"]}
+            caption = {info["content"]}
+            comments = {comments}
+            accountId = {info["author"]["_id"]}
+            postId = {info["_id"]}
+            reactions = {reactions}
+            myReactions = {myReactions}
+            />
         } 
   return (
     <div>

@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 import React, { useState } from 'react'
 import axios from 'axios'
 
+
 function Home () {
     const [postArray, setPostArray] = useState([])
     const [loading, setLoading] = useState(true)
@@ -31,13 +32,29 @@ function Home () {
                 for(let j = 0; j < postArray[i]["comments"].length; j++){
                     comments.push([[postArray[i]["comments"][j]["author"]["username"]], [postArray[i]["comments"][j]["comment"]]])
                 }
+                //parse reactions
+                let reactions = [0, 0, 0, 0, 0]
+                let myReactions = [false, false, false, false, false]
+                let reactionId = [null, null, null, null, null]
+                for(let j = 0; j < postArray[i]["reactions"].length; j++){
+                    let k = postArray[i]["reactions"][j]["reactionType"]
+                    console.log(postArray[i]["reactions"][j]["author"]["_id"] === global._id)
+                    if(postArray[i]["reactions"][j]["author"]["_id"] === global._id){
+                        myReactions[k] = true;
+                        reactionId[i]=postArray[i]["reactions"][j]["_id"]
+                    }
+                    reactions[k] = reactions[k] + 1
+                }
                 allPosts.push(<Post 
-                    username = {postArray[i]["author"]["username"]} //after update should be ["author"]["username"]
+                    username = {postArray[i]["author"]["username"]}
                     image = {postArray[i]["imgUrl"]}
                     caption = {postArray[i]["content"]}
                     comments = {comments}
                     accountId = {postArray[i]["author"]["_id"]}
                     postId = {postArray[i]["_id"]}
+                    reactions = {reactions}
+                    myReactions = {myReactions}
+                    reactionId = {reactionId}
                 />)
             }
             return allPosts
@@ -47,7 +64,7 @@ function Home () {
     return (
         <div>
             <NavBar />
-            <CreatePost />
+            <CreatePost onSubmit={() => { setLoading(true) }}/>
             {generatePosts()}
         </div>
     ) 

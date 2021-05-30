@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './NavBar.css';
 
-function NavBar() {
+function NavBar(props) {
     const [dynamicButtons, setDynamicButtons] = useState(<Fragment>
         <Link className="button-link" to="/login">Login</Link>
         <Link className="button-link" to="/signup">Signup</Link>
@@ -31,7 +31,7 @@ function NavBar() {
             console.log(response);
             global._id = "";
             setDynamicButtons(null)
-        })
+        }).then(response => {if(props.onLogOut instanceof Function){props.onLogOut()}})
     }
 
     return (

@@ -65,7 +65,7 @@ function Home () {
 
     return (
         <div>
-            <NavBar />
+            <NavBar onLogOut={() => { setLoading(true) }}/>
             <CreatePost onSubmit={() => { setLoading(true) }}/>
             {generatePosts()}
         </div>

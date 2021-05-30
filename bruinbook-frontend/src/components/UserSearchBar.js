@@ -7,7 +7,7 @@ function UserSearchBar() {
     const [userArray, setUserArray] = useState([])
     const [status, setStatus] = useState("loading")
     const [searchText, setSearchText] = useState("")
-    var loggedIn = false;
+    const [loggedIn, setLoggedIn] = useState(false)
 
     const search = e => {
         setStatus("loading")
@@ -34,10 +34,10 @@ function UserSearchBar() {
     if (status === "loading") {
         var message = <p>Please log in to search</p>
         if (global._id !== "" && !loggedIn) {
-            loggedIn = true;
+            setLoggedIn(true);
         }
-        else {
-            loggedIn = false;
+        else if (global._id === "" && loggedIn) {
+            setLoggedIn(false);
         }
 
         content =
@@ -45,7 +45,6 @@ function UserSearchBar() {
                 {loggedIn ? form : <div />}
                 {loggedIn ? <div /> : message}
             </Fragment>;
-
     }
     else {
         let accountArray = []

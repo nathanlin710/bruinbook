@@ -1,6 +1,7 @@
 import CreatePost from './CreatePost';
 import Post from './Post'
 import NavBar from './NavBar'
+import './Home.css'
 import React, { useState } from 'react'
 import axios from 'axios'
 
@@ -12,7 +13,11 @@ function Home () {
         if(global._id === ""){
             //toggle between those 2 options for testing
             //global._id = "60a73d0f94b01a07102d3ca1"
-            return <p>not logged in</p>
+            return (
+                <div className="home-box">
+                    <p>Please log in to see posts</p>
+                </div>
+            )
         }
         if (loading){
             axios.get("http://localhost:3000/accounts/" + global._id + "/feed").then(response => 
@@ -66,8 +71,11 @@ function Home () {
     return (
         <div>
             <NavBar onLogOut={() => { setLoading(true) }}/>
+        <div className="home-background">
+            <NavBar />
             <CreatePost onSubmit={() => { setLoading(true) }}/>
             {generatePosts()}
+        </div>
         </div>
     ) 
 }

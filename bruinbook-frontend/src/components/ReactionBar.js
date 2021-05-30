@@ -22,7 +22,7 @@ class ReactionBar extends React.Component {
     }
    
     handleClick(i){
-        if(this.state.loading == true){
+        if(this.state.loading === true){
             return;
         }
         else{

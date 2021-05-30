@@ -13,7 +13,7 @@ class ReactionBar extends React.Component {
             icons: ["heart", "eggert", "cat", "thumb", "bruin"]
         };
         for(let i = 0; i < this.state.buttonClicked.length; i++){
-            if(this.state.buttonClicked[i] == true){
+            if(this.state.buttonClicked[i] === true){
                 this.state.icons[i] = this.state.icons[i] + "clicked"
             }
         }

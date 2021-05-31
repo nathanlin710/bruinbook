@@ -70,7 +70,7 @@ function Home () {
 
     return (
         <div>
-            <h1 class="logo">bruinbook</h1>
+            <h1 className="logo">bruinbook</h1>
             <NavBar onLogOut={() => { setLoading(true) }}/>
         <div className="home-background">
             <CreatePost onSubmit={() => { setLoading(true) }}/>

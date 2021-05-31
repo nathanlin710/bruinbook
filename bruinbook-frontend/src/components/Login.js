@@ -19,39 +19,39 @@ function Login() {
             setMessage(<p>Login Successful</p>);
             global._id = response.data["_id"];
             global.user = response.data["username"]
-          }, (error) => {
+        }, (error) => {
             setMessage(<p>Login Failed</p>);
             console.log(error);
-          });
+        });
         e.preventDefault()
         setSubmitted(true)
     }
 
-    const form = 
-    <div>
-    <h1>Login</h1>
-        <form onSubmit={submit}>
-            <label htmlFor="username">Username</label> 
-            <br />
-            <input
-                name="username"
-                value= {username}
-                onChange= {text => setUsername(text.target.value)}
-            />
-            <br />
-            <br />
-            <label htmlFor="password">Password</label>
-            <br />
-            <input
-                name="password"
-                type="password"
-                value = {password}
-                onChange = {text => setPassword(text.target.value)}
-            />
-            <br />
-            <br />
-            <button type="submit">Login</button>
-        </form>
+    const form =
+        <div>
+            <h1>Login</h1>
+            <form onSubmit={submit}>
+                <label htmlFor="username">Username</label>
+                <br />
+                <input
+                    name="username"
+                    value={username}
+                    onChange={text => setUsername(text.target.value)}
+                />
+                <br />
+                <br />
+                <label htmlFor="password">Password</label>
+                <br />
+                <input
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={text => setPassword(text.target.value)}
+                />
+                <br />
+                <br />
+                <button type="submit">Login</button>
+            </form>
         </div>
 
     return (
@@ -59,10 +59,10 @@ function Login() {
             <NavBar />
             <div className='login-box'>
                 {submitted ? message : form}
-            </div>   
+            </div>
         </div>
     )
-    
+
 }
 
 export default Login

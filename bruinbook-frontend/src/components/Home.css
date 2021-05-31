@@ -13,3 +13,10 @@
     border-radius: 10px;
     text-align: center
 }
+
+.logo {
+    font-size: 30px;
+    font-family: Marker Felt, fantasy;
+    font-weight: bold;
+    text-align: center;
+}

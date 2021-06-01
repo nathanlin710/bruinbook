@@ -14,7 +14,7 @@ You’ll need:
 Type the following lines in your command line:
 ```sh
 $ git clone https://github.com/dylanzhangg/bruinbook.git
-$ cd bruinbook-frontend
+$ cd bruinbook/bruinbook-frontend
 $ npm install
 $ cd ../bruinbook-backend
 $ npm install

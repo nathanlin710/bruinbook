@@ -47,3 +47,6 @@ please update the places where ports are used in the code.
 
 If everything worked properly, you should be able to direct your browser to [http://localhost:3001/](http://localhost:3001/) 
 and see the homepage of our site. 
+
+### Troubleshooting
+If you run into an issue while trying to install dependencies, try running `npm install --legacy-peer-deps`.
